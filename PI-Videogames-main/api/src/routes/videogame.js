@@ -1,0 +1,36 @@
+const {Router}=require('express');
+const router = Router();
+const{createVideogame, getVideogame, getById}=require('../controllers/videogamesControllers.js');
+
+router.get('/', async(req,res)=>{
+    const {name}= req.query;
+    try {
+        const videogame=await getVideogame(name);
+        return res.status(200).json(videogame);
+    } catch (error) {
+        return res.status(404).json({error: error.message})
+    }
+});
+// [ ] GET /videogame/{idVideogame}:
+// Obtener el detalle de un videojuego en particular
+// Debe traer solo los datos pedidos en la ruta de detalle de videojuego
+// Incluir los géneros asociados
+// [ ] Los campos mostrados en la ruta principal para cada videojuegos (imagen, nombre, y géneros)
+// [ ] Descripción
+// [ ] Fecha de lanzamiento
+// [ ] Rating
+// [ ] Plataformas
+router.get('/:id', async (req,res)=>{
+    const {id}=req.params;
+    const videogame=await getById(id);
+    res.status(200).json(videogame);
+})
+
+router.post('/', async(req,res)=>{
+    const{name,description, released,rating, platforms, genres}=req.body;
+    const newVideogame=await createVideogame(name,description, released,rating, platforms, genres);
+    res.status(201).json(newVideogame);
+})
+
+module.exports=router;
+

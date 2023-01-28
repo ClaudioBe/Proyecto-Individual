@@ -9,7 +9,7 @@ const InitialPage= ()=>{
     return (
         <div>
             <img src={img} alt=""></img>
-            <Link to='/home'><button>Home</button></Link>
+            <Link to='/videogames'><button>Videogames</button></Link>
         </div>
         
     )

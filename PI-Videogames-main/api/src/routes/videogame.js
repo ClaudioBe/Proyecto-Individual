@@ -8,7 +8,7 @@ router.get('/', async(req,res)=>{
         const videogame=await getVideogame(name);
         return res.status(200).json(videogame);
     } catch (error) {
-        return res.status(404).json({error: error.message})
+         res.status(404).json({error: error.message})
     }
 });
 // [ ] GET /videogame/{idVideogame}:
@@ -22,13 +22,18 @@ router.get('/', async(req,res)=>{
 // [ ] Plataformas
 router.get('/:id', async (req,res)=>{
     const {id}=req.params;
-    const videogame=await getById(id);
-    res.status(200).json(videogame);
+    try {
+        const videogame=await getById(id);
+        res.status(200).json(videogame);
+    } catch (error) {
+        res.status(404).json({error: error.message})
+    }
+    
 })
 
 router.post('/', async(req,res)=>{
-    const{name,description, released,rating, platforms, genres}=req.body;
-    const newVideogame=await createVideogame(name,description, released,rating, platforms, genres);
+    const{name,description, released,rating,img, platforms, genres}=req.body;
+    const newVideogame=await createVideogame(name,description, released,rating, img,platforms, genres);
     res.status(201).json(newVideogame);
 })
 

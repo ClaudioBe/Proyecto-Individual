@@ -1,0 +1,24 @@
+.nameAndButton{
+    display:flex;
+    margin-left: 500px;
+}
+.divDetail{
+    margin-left: 200px;
+}
+.buttonDetail{
+    margin-left: 400px;
+}
+.containerDetail{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    color:aqua;
+}
+.imgDetail{
+    width: 100%;
+    height: 100%;
+}
+
+.infoContDetail{
+    display: flex;
+}

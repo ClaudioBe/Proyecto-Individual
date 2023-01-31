@@ -32,8 +32,8 @@ router.get('/:id', async (req,res)=>{
 })
 
 router.post('/', async(req,res)=>{
-    const{name,description, released,rating,img, platforms, genres}=req.body;
-    const newVideogame=await createVideogame(name,description, released,rating, img,platforms, genres);
+    const{name,description_raw, released, rating, background_image, platforms, genres}=req.body;
+    const newVideogame=await createVideogame(name,description_raw, released,rating, background_image,platforms, genres);
     res.status(201).json(newVideogame);
 })
 

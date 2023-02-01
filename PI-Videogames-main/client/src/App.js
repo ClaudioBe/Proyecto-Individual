@@ -5,6 +5,9 @@ import Home from './components/Home/Home';
 import InitialPage from './components/InitialPage/InitialPage'
 import VideogameDetail from'./components/VideogameDetail/VideogameDetail';
 import CreateVideogame from './components/CreateVideogame/CreateVideogame';
+import axios from 'axios';
+axios.defaults.baseURL='http://localhost:3001/';
+
 function App() {
   return (
     <div className="App">

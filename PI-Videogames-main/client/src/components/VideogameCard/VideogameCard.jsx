@@ -5,7 +5,7 @@ const VideogameCard=({id,name,genres,img})=>{
     return(
         <div className='containerCard'>
             <Link className='link' to={`/videogames/${id}`}>{name}</Link>
-            <img src={img}/>
+            <img className='imgCard' src={img}/>
             <h3>Generos: </h3>
             <div className='containerGenres'>
                 <ul>{genres.map(g=> (<li>{g}</li>))}</ul>

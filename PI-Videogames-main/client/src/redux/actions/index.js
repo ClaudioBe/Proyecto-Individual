@@ -11,7 +11,7 @@ export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 
 export const getAllVideogames = () => async (dispatch) => {
   try {
-    return await axios('http://localhost:3001/videogames').then(r=>
+    return await axios('/videogames').then(r=>
       dispatch({type: GET_ALL_VIDEOGAMES, payload:r.data}))
   } catch (error) {
     console.log(error);
@@ -21,7 +21,7 @@ export const getAllVideogames = () => async (dispatch) => {
 
 export const getAllVideogamesName =(name)=>async (dispatch)=>{
   try {
-    return await axios(`http://localhost:3001/videogames?name=${name}`).then((r)=>
+    return await axios(`/videogames?name=${name}`).then((r)=>
       dispatch({type:GET_ALL_VIDEOGAMES_NAME, payload: r.data}))
   } catch (error) {
     console.log(error)
@@ -30,7 +30,7 @@ export const getAllVideogamesName =(name)=>async (dispatch)=>{
 }
 
 export const getAllGenres=()=>async (dispatch)=>{
-  return await axios("http://localhost:3001/genres").then(r=>
+  return await axios("/genres").then(r=>
     dispatch({ type: GET_ALL_GENRES, payload: r.data}));
 }
 
@@ -58,10 +58,10 @@ export const createdOrExisting=(payload)=>{
 }
 
 export const getVideogameDetail = (id) => async (dispatch) => {
-  return await axios(`http://localhost:3001/videogames/${id}`).then(r=>
+  return await axios(`/videogames/${id}`).then(r=>
     dispatch({type: GET_VIDEOGAME_DETAIL, payload:{...r.data}}))
 };
 
 export const createVideogame =  (payload)=> async()=>{
-  return await axios.post("http://localhost:3001/videogames",payload)
+  return await axios.post("/videogames",payload)
  };

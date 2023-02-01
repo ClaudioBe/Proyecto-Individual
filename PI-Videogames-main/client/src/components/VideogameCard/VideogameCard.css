@@ -1,21 +1,30 @@
 .containerCard{
     background-color: rgb(3, 3, 170);
-    border:black solid 2px;
+    color:rgb(196, 196, 196);
+    border:gray solid 2px;
     border-radius: 10px;
     display:flex;
     flex-direction: column;
     width: 350px;
     height: 400px;
+    margin-left: 5px;
+    margin-right: 15px;
+    margin-top: 10px;
     
 }
 .link{
-    color:aqua;
+    color:rgb(196, 196, 196);;
 }
-img{
-    width: 350px;
+.imgCard{
+    border-radius: 10px;
+    width: 340px;
     height: 170px;
+    margin-left: 5px;
+    margin-top: 5px;
 }
 
 .containerGenres{
-    display:flex; 
+    display:flex;
+    color:rgb(196, 196, 196);
+    margin-left: 100px
 }

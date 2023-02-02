@@ -1,0 +1,16 @@
+.LP{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+}
+.imgs2{
+    display:flex;
+    flex-direction: ROW;
+}
+.buttonLP{
+    border-radius: 10px;
+    width: 1000px;
+    height: 200px;
+    
+}

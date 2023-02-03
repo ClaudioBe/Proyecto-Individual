@@ -2,15 +2,38 @@
     display:flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 200px;
+   
+}
+.imgs1{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: ROW;
+    margin-right: 50px;
 }
 .imgs2{
-    display:flex;
-    flex-direction: ROW;
+    display: flex;
+}
+.mario{
+    margin-top: 20px;
+}
+.kratos{
+    margin-right:50px ;
+}
+.linkLP{
+    text-decoration: none;
+    text-align: center;
 }
 .buttonLP{
+    background-color: pink;
+    display:flex;
     border-radius: 10px;
     width: 1000px;
-    height: 200px;
-    
+    height: 100px;
+    color: blue
+}
+.rota-x{
+    transform: scaleX(-1);
+}
+.start{
+    display: flex;
 }

@@ -9,15 +9,15 @@ import LandingPage from './components/LandingPage/LandingPage';
 axios.defaults.baseURL='http://localhost:3001/';
 
 function App() {
-  return (
-    <div className="App">
-      <Routes>
-        <Route exact path='/' element ={<LandingPage/>}/>
-        <Route exact path='/videogames' element={<Home/>}/>
-        <Route exact path='/videogames/:id' element= {<VideogameDetail/>}/>
-        <Route exact path='/videogames/create' element= {<CreateVideogame/>}/>
-      </Routes>
-    </div>
-  );
+  return(
+      <div className="App">
+        <Routes>
+          <Route exact path='/' element ={<LandingPage />}/>
+          <Route exact path='/videogames' element={<Home />}/>
+          <Route exact path='/videogames/:id' element= {<VideogameDetail />}/>
+          <Route exact path='/videogames/create' element= {<CreateVideogame/>}/>
+        </Routes>
+      </div>
+    );
 }
 export default App;

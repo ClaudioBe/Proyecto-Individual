@@ -3,3 +3,29 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+.buttonsSB{
+    display: flex;
+    align-items: center;
+    margin-left: 30px;
+    color: silver;
+}
+.sep{
+    margin-left: 1px;
+}
+.linkLPHome{
+    margin-right: 30px;
+}
+.btnHome{
+    background-color: blue;
+    color: silver;
+    border: silver solid;
+}
+.create{
+    background-color: blue;
+    color:silver;
+    border: 2px silver solid;
+}
+.loading{
+    display:flex;
+    justify-content: center;
+}

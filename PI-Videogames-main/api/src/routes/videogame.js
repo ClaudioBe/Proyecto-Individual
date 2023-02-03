@@ -1,11 +1,12 @@
 const {Router}=require('express');
 const router = Router();
-const{createVideogame, getVideogame, getById}=require('../controllers/videogamesControllers.js');
+const{createVideogame, getAllVideogames,getVideogamesByName, getById}=require('../controllers/videogamesControllers.js');
 
 router.get('/', async(req,res)=>{
     const {name}= req.query;
     try {
-        const videogame=await getVideogame(name);
+        const videogame=name ? await getVideogamesByName(name)
+                             : await getAllVideogames()
         return res.status(200).json(videogame);
     } catch (error) {
          res.status(404).json({error: error.message})

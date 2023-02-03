@@ -1,0 +1,17 @@
+.form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+.errors{
+    color: red;
+}
+.linkCV{
+    margin-left: 1050px;
+}
+.linkCVHome{
+    margin-left:50px ;
+}
+.links{
+    display: flex;
+}

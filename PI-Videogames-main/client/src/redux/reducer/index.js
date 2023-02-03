@@ -38,7 +38,7 @@ const rootReducer=(state=initialState,action)=>{
             const filterGenre=state.allVideogames.filter(v=>v.genres.includes(action.payload))
             return {
                 ...state,
-                videogames: action.payload === "Todos" ?state.allVideogames :filterGenre
+                videogames: action.payload === "all" ?state.allVideogames :filterGenre
             }
         case ALPHABETICAL_ORDER: 
             let orderA= action.payload==="asc"? state.videogames.sort((v1,v2)=>{
@@ -54,7 +54,7 @@ const rootReducer=(state=initialState,action)=>{
             
             return {
                 ...state,
-                videogames: orderA
+                videogames: action.payload === "none" ?state.allVideogames :orderA
                 
             }
         case ORDER_BY_RATING:
@@ -70,14 +70,14 @@ const rootReducer=(state=initialState,action)=>{
             })
             return {
                 ...state,
-                videogames:orderByRating
+                videogames:action.payload==="none"? state.allVideogames :orderByRating
             }
         case CREATED_OR_EXISTING: 
             const filter=action.payload==="created" ?state.allVideogames.filter(v=>v.createdInDb)
                         :state.allVideogames.filter(v=> !v.createdInDb)
             return{ 
                 ...state,
-                videogames: action.payload ==="Todos" ?state.allVideogames :filter 
+                videogames: action.payload ==="all" ?state.allVideogames :filter 
         }
         case GET_VIDEOGAME_DETAIL: return{
             ...state,

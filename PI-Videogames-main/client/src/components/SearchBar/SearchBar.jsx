@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { getAllVideogamesName } from "../../redux/actions";
-
+import './SearchBar.css'
 const SearchBar=({setCurrentPage})=>{
     const [input, setInput]= useState("")
     const dispatch=useDispatch();
@@ -24,7 +24,7 @@ const SearchBar=({setCurrentPage})=>{
                 placeholder= "Buscar..."
             />
             
-            <button onClick={handleClick}>BUSCAR</button>
+            <button className="btnSB" onClick={handleClick}>BUSCAR</button>
         </>
     )
 }

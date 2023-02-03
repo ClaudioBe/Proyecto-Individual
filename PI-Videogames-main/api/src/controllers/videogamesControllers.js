@@ -12,12 +12,11 @@ const {API_KEY}=process.env;
 // como query parameter
 // Si no existe ningún videojuego mostrar un mensaje adecuado
 const getVideogamesByName=async (name)=>{
-    let videogamesApi= await axios(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)
-    const videogamesDb=await Videogame.findAll({where: {name:{[Op.iLike]:`%${name}%`}},
-                             include:{model:Genre, attributes:['name'],through:{attributes:[]}}})
+    const videogamesApi= await axios(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)
+    const videogamesDb=await Videogame.findAll({where: {name:{[Op.iLike]:`%${name}%`}},include:Genre})
     
-   
-    videogamesApi=videogamesApi.data.results.map(v=>{
+    let allVideogames=videogamesDb.concat(videogamesApi.data.results);
+    allVideogames=allVideogames?.map(v=>{
         return {
             id:v.id,
             name:v.name,
@@ -25,7 +24,6 @@ const getVideogamesByName=async (name)=>{
             genres:v.genres?.map(g=>g.name),
             rating:v.rating}
     })
-    const allVideogames=videogamesDb.concat(videogamesApi);
     if(allVideogames){
         while(allVideogames.length>15){
             allVideogames.pop();
@@ -35,30 +33,29 @@ const getVideogamesByName=async (name)=>{
     throw Error("No se encontro ningún videojuego")
 }
 const getAllVideogames=async ()=>{
-    //si el parametro name existe o tiene algo dentro, hago la peticion a la Api pasandole
-    //ese "name" por query
-
-    //sino, hago la peticion para que traiga todos los juegos de la primera pagina(la primera vez) 
     let videogamesApi= [];
+    //hago la peticion para que traiga los 20 juegos de la primera pagina
     let Api=await axios(`https://api.rawg.io/api/games?key=${API_KEY}`)
-
     //itero 5 veces para traer los videojuegos de las primeras 5 paginas 
     for(let i=0;i<5;i++){
-        Api.data.results.map(v=>videogamesApi.push({
+        Api.data.results.map(v=>videogamesApi.push(v));
+        //cambio el valor de Api por los datos de la pagina siguiente guardada en la propiedad next
+        Api = await axios(Api.data.next);
+    }
+
+    const videogamesDb=await Videogame.findAll({include:Genre})
+    let allVideogames=videogamesDb.concat(videogamesApi);
+ 
+    allVideogames=allVideogames.map(v=>{
+        return {
             id:v.id,
             name:v.name,
             img:v.background_image,
             genres:v.genres?.map(g=>g.name),
-            rating:v.rating
-        }))
-        //cambio el valor de Api por los datos de la pagina siguiente guardada en el atributo next
-        Api = await axios(Api.data.next)
-    }
-
-    let videogamesDb=await Videogame.findAll({include:{model: Genre,attributes:['name'],
-                           through:{attributes:[]}}})
-    
-    const allVideogames=videogamesDb.concat(videogamesApi);
+            rating:v.rating,
+            createdInDb: v.createdInDb?true:false
+        }
+    })
     
     return allVideogames;
 }
@@ -77,11 +74,7 @@ const createVideogame=async (name,description_raw, released,rating,background_im
 const getById= async(id)=>{
     const videogame = !isNaN(id)
         ?await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`).then(r=>r.data)
-        :await Videogame.findOne({
-            where: {id},
-            include:{
-                model: Genre
-            }});
+        :await Videogame.findOne({where: {id},include:Genre});
             
     const platforms= !isNaN(id)? videogame.platforms.map(p=>p.platform.name) :videogame.platforms;
 

@@ -1,22 +1,31 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect ,useState}from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams ,Link} from "react-router-dom";
 import { getVideogameDetail } from "../../redux/actions";
 import './VideogameDetail.css'
 
+const Loading="https://media.tenor.com/0o0T8nh8W4EAAAAj/sonic-is-runinng-run.gif";
+
 const VideogameDetail=()=>{
+    const[loading,setLoading]=useState(false);
+    const loadingCards=()=>{
+        setLoading(true);
+        setTimeout(()=>{
+          setLoading(false);
+        },2000)
+    }
     const {id}=useParams();
     const dispatch= useDispatch();
     useEffect(()=>dispatch(getVideogameDetail(id)),[])
+    useEffect(()=>loadingCards(),[])
     const videogame=useSelector(state=>state.videogameDetail)
     
-
-    return (
+    return loading ? (<div className='loading'><img src={Loading}/></div>) 
+                   :(
         <div className="containerDetail">
             <div className="nameAndButton">
                 <h1>{videogame.name}</h1>
-                <button className="buttonDetail"><Link to ='/videogames'>Volver</Link></button>
+                <Link to ='/videogames'><button className="buttonDetail">Volver</button></Link>
             </div>
             <img className="imgDetail" src={videogame.img}/>
             <p className="desc">{videogame.description}</p>

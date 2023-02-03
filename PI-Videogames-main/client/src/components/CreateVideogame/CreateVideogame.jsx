@@ -13,19 +13,15 @@ function validate(input){
     input.description_raw ?error.description_raw=null 
                           :error.description_raw="El videojuego debe tener una descripción"
 
-    const fecha=[];
-    if(!input.released) error.released=null; 
-    else{
-        if(input.released==="%-%-%") fecha= input.released.split("-"); 
-        if(fecha.length!=3 || fecha[0].length!=4 || fecha[1]!=2 || fecha[2]!=2) 
-            error.released="El formato es aaaa-mm-dd y deben ser números";
-        else error.released=null;
-    }
-    
+    const guiones=[];
+
+    if(input.released.length===10)guiones.push(input.released[4],input.released[7])
+    if(guiones.length!==2) error.released="El formato es aaaa-mm-dd y deben ser números";
+
     if(input.rating>5.0) error.rating='El rating no puede ser mayor a 5.0';
     if(input.rating<0) error.rating= "El rating no puede ser negativo";
 
-    input.platforms ?error.platforms=null :error.platforms="Debe elegir al menos una plataforma"
+    if(input.background_image.length>255) error.background_image = "El link es muy largo";
     
     return error;
 }
@@ -95,12 +91,12 @@ const CreateVideogame=()=>{
     return(
         <>
             <div className="links">
-                <Link className="linkCVHome" to='/'><img src={img} width="50px"/></Link>
-                <Link className="linkCV" to ="/videogames"><button>Volver</button> </Link>
+                <Link className="linkCVLP" to='/'><img src={img} alt="inicio" width="50px"/></Link>
+                <Link className="linkCV" to ="/videogames"><button className="back">Volver</button> </Link>
             </div>
             
 
-            <form className="form" onSubmit={e=>handleSubmit(e)}>
+            <form className="form" onSubmit={handleSubmit}>
                 <label>Nombre: </label>
                 <input className="input" type="text" name="name" value={input.name} onChange={handleChange}/>
                 {error.name && (<p className="errors">{error.name}</p>)}
@@ -119,7 +115,8 @@ const CreateVideogame=()=>{
 
                 <label>Imagen:</label>
                 <input className="input" placeholder="https://...." type="text" name="background_image" value={input.background_image} onChange={handleChange}></input>
-                
+                {error.background_image && (<p className="errors">{error.background_image}</p>)}
+
                 <label>Plataformas: </label>
                 <select onChange={handleSelectPlatforms}>
                     {platforms.map(p=><option value={p}>{p}</option>)}
@@ -133,7 +130,7 @@ const CreateVideogame=()=>{
                 </select>
                 <ul><li>{input.genres.map(g=>g+ ", ")}</li></ul>
 
-                <button type="submit">Crear Videojuego</button>
+                <button className="btnCreate" type="submit">Crear Videojuego</button>
             </form>
         </>
         

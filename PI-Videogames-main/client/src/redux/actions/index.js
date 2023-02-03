@@ -10,13 +10,8 @@ export const GET_VIDEOGAME_DETAIL = "GET_VIDEOGAME_DETAIL";
 export const CREATE_VIDEOGAME = "CREATE_VIDEOGAME";
 
 export const getAllVideogames = () => async (dispatch) => {
-  try {
     return await axios('/videogames').then(r=>
-      dispatch({type: GET_ALL_VIDEOGAMES, payload:r.data}))
-  } catch (error) {
-    console.log(error);
-  }
-    
+      dispatch({type: GET_ALL_VIDEOGAMES, payload:r.data})) 
 }
 
 export const getAllVideogamesName =(name)=>async (dispatch)=>{

@@ -5,9 +5,9 @@ const{createVideogame, getAllVideogames,getVideogamesByName, getById}=require('.
 router.get('/', async(req,res)=>{
     const {name}= req.query;
     try {
-        const videogame=name ? await getVideogamesByName(name)
+        const videogames=name ? await getVideogamesByName(name)
                              : await getAllVideogames()
-        return res.status(200).json(videogame);
+        return res.status(200).json(videogames);
     } catch (error) {
          res.status(404).json({error: error.message})
     }

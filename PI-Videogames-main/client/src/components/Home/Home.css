@@ -10,7 +10,7 @@
     color: silver;
 }
 .sep{
-    margin-left: 1px;
+    margin-left: 5px;
 }
 .linkLPHome{
     margin-right: 30px;
@@ -18,14 +18,17 @@
 .btnHome{
     background-color: blue;
     color: silver;
-    border: silver solid;
+    border: silver solid 2px;
+    cursor:pointer;
 }
 .create{
     background-color: blue;
     color:silver;
     border: 2px silver solid;
+    cursor: pointer;
 }
 .loading{
     display:flex;
     justify-content: center;
+    margin-top: 350px;
 }

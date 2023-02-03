@@ -21,14 +21,13 @@ const rootReducer=(state=initialState,action)=>{
     switch(action.type){
         case GET_ALL_VIDEOGAMES: 
             return{
-            ...state,
-            videogames: action.payload,
-            allVideogames: action.payload, 
+                ...state,
+                videogames: action.payload,
+                allVideogames: action.payload, 
             }
         case GET_ALL_VIDEOGAMES_NAME: return{
             ...state,
             videogames: action.payload,
- 
         }
         case GET_ALL_GENRES: return {
             ...state,
@@ -74,7 +73,7 @@ const rootReducer=(state=initialState,action)=>{
             }
         case CREATED_OR_EXISTING: 
             const filter=action.payload==="created" ?state.allVideogames.filter(v=>v.createdInDb)
-                        :state.allVideogames.filter(v=> !v.createdInDb)
+                        :state.allVideogames.filter(v=>!v.createdInDb)
             return{ 
                 ...state,
                 videogames: action.payload ==="all" ?state.allVideogames :filter 

@@ -17,20 +17,20 @@ const LandingPage= ()=>{
     return (
         <div className='LP'>
             <div className='imgs1'>
-                <img src={img3} width="200px" />  
+                <img src={img3} width="200px"/>  
                 <img className="kratos"src={img6} width="200px"/>
                 <img src={img4} width="200px" />
             </div>
             <div className='start'>
                 <img src={flecha} width="70px" />
-                <Link className="linkLP" to='/videogames' ><button className='buttonLP' >START!</button></Link>
+                <Link className="linkLP" to='/videogames' ><button className='buttonLP' >ENTRAR!</button></Link>
                 <img className="rota-x" width="70px" src={flecha}/>
             </div>
             
             <div className="imgs2">
-                <img src={img8} width="150px" />
-                <img className="mario"src={img} width="300px"/>
-                <img src={img1} width="150px" />
+                <img src={img8} width="150px" height="200px"/>
+                <img className="mario"src={img} width="300px" height="200px"/>
+                <img src={img1} width="150px" height="200px" />
             </div>
             
         </div>

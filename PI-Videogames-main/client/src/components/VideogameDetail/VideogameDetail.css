@@ -1,18 +1,26 @@
 .nameAndButton{
     display:flex;
     margin-left: 500px;
+    justify-content: center;
 }
 .divDetail{
     margin-left: 200px;
 }
 .buttonDetail{
     margin-left: 400px;
+    cursor: pointer;
+    text-decoration: none;
+    background-color: blue;
+    color: silver;
+    border: silver solid 2px;
 }
 .containerDetail{
     display:flex;
     flex-direction: column;
     align-items: center;
-    color:aqua;
+    color:silver; 
+    background-image:"https://www.pepaferrer.com/wp-content/uploads/2019/07/foto-negra.jpg" ;
+    background-color: black;
 }
 .imgDetail{
     border-radius: 20px;

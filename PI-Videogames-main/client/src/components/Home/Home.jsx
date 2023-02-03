@@ -1,4 +1,4 @@
-import React, {useState,Suspense,lazy } from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -24,6 +24,7 @@ const Home =()=>{
     const [orderByRat,setOrderByRat]=useState("")
     const handleFilterGenre=(e)=>{
         dispatch(filterVideogamesByGenre(e.target.value))
+        setCurrentPage(1);
     }
 
     const handleFilterCreate=(e)=>{
@@ -33,7 +34,7 @@ const Home =()=>{
     const handleOrderByName=(e)=>{
         dispatch(alphabeticalOrder(e.target.value))
         setCurrentPage(1);
-        setOrderAz(e.target.value)
+        setOrderAz(e.target.value);
     }
     const handleOrderByRating=(e)=>{
         dispatch(OrderByRating(e.target.value))
@@ -42,7 +43,8 @@ const Home =()=>{
     }
     const videogames=useSelector(state=>state.videogames);
     const genres=useSelector(state=>state.genres)
-    const dispatch=useDispatch()
+    const dispatch=useDispatch();
+
     useEffect(()=>dispatch(getAllGenres()),[])
     useEffect(()=>dispatch(getAllVideogames()),[])
     useEffect(()=>loadingCards(),[])
@@ -67,7 +69,7 @@ const Home =()=>{
                 <p className='sep'>Genero:</p>
                 <select className="btnHome" onChange={handleFilterGenre}>
                     <option value = "all">Todos</option>
-                    {genres.map(g=>(<option value={g.name}>{g.name}</option>))}
+                    {genres.map(g=>(<option key={g.id} value={g.name}>{g.name}</option>))}
                 </select>
                 <p className='sep'>Orden alfabético: </p>
                 <select className="btnHome" onChange={handleOrderByName}>

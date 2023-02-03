@@ -2,16 +2,34 @@
     display:flex;
     flex-direction: column;
     align-items: center;
+    color:black;
+    background-color: silver;
+    width: 250px;
+    margin-left: 550px;
 }
 .errors{
-    color: red;
+    color: rgb(255, 0, 0);
 }
 .linkCV{
     margin-left: 1050px;
 }
-.linkCVHome{
+.linkCVLP{
     margin-left:50px ;
+
+}
+.back{
+    background-color: red;
+    color: silver;
+    cursor:pointer;
+    border: 2px silver solid;
 }
 .links{
     display: flex;
+}
+.btnCreate{
+    background-color: red;
+    color:silver;
+    border-radius: 2px;
+    border:2px solid silver;
+    cursor: pointer;
 }

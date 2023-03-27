@@ -12,7 +12,7 @@ const VideogameDetail=()=>{
         setLoading(true);
         setTimeout(()=>{
           setLoading(false);
-        },2000)
+        },700)
     }
     const {id}=useParams();
     const dispatch= useDispatch();

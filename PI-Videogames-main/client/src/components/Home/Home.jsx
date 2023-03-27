@@ -18,7 +18,7 @@ const Home =()=>{
         setLoading(true);
         setTimeout(()=>{
           setLoading(false);
-        },10000)
+        },1700)
     }
     const [orderAz, setOrderAz]=useState("")
     const [orderByRat,setOrderByRat]=useState("")

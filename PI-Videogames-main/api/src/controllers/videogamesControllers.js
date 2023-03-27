@@ -40,10 +40,11 @@ const getAllVideogames=async ()=>{
         //cambio el valor de Api por los datos de la pagina siguiente guardada en la propiedad next
         Apis.push(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
     }
-    const videogamesApi= await Promise.all(Apis.map(api=>axios(api))).then(r=>r.data);
+    const videogamesApi= await Promise.all(Apis.map(api=>axios(api))).then(r=>r.map(res=>res.data.results));
+    console.log(Apis.map(api=>axios(api)));
     const videogamesDb=await Videogame.findAll({include:Genre})
-    let allVideogames=videogamesDb.concat(videogamesApi);
-    console.log(videogamesApi);
+    let allVideogames=videogamesDb.concat(videogamesApi.flat().map(v=>v));
+   
     allVideogames=allVideogames.map(v=>{
         return {
             id:v.id,

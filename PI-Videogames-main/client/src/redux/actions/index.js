@@ -59,4 +59,4 @@ export const getVideogameDetail = (id) => async (dispatch) => {
 
 export const createVideogame =  (payload)=> async()=>{
   return await axios.post("/videogames",payload)
- };
+};

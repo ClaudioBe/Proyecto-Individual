@@ -24,13 +24,13 @@
     text-align: center;
 }
 .buttonLP{
-    background-color: red;
+    background-color: silver;
     display:flex;
     border-radius: 10px;
-    border: 2px solid silver;
+    border: 2px solid black;
     width: 1000px;
     height: 100px;
-    color: silver;
+    color: red;
     justify-content: center;
     align-items: center;
     cursor: pointer;

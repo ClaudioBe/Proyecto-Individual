@@ -16,14 +16,14 @@
     margin-right: 30px;
 }
 .btnHome{
-    background-color: blue;
-    color: silver;
+    background-color: white;
+    color: black;
     border: silver solid 2px;
     cursor:pointer;
 }
 .create{
-    background-color: blue;
-    color:silver;
+    background-color: white;
+    color:black;
     border: 2px silver solid;
     cursor: pointer;
 }

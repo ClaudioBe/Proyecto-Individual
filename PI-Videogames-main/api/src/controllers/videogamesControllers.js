@@ -33,19 +33,17 @@ const getVideogamesByName=async (name)=>{
     throw Error("No se encontro ningún videojuego")
 }
 const getAllVideogames=async ()=>{
-    let videogamesApi= [];
     //hago la peticion para que traiga los 20 juegos de la primera pagina
-    let Api=await axios(`https://api.rawg.io/api/games?key=${API_KEY}`)
+    let Apis=[`https://api.rawg.io/api/games?key=${API_KEY}`];
     //itero 5 veces para traer los videojuegos de las primeras 5 paginas 
-    for(let i=0;i<5;i++){
-        Api.data.results.map(v=>videogamesApi.push(v));
+    for(let i=2;i<6;i++){
         //cambio el valor de Api por los datos de la pagina siguiente guardada en la propiedad next
-        Api = await axios(Api.data.next);
+        Apis.push(`https://api.rawg.io/api/games?key=${API_KEY}&page=${i}`);
     }
-
+    const videogamesApi= await Promise.all(Apis.map(api=>axios(api))).then(r=>r.data);
     const videogamesDb=await Videogame.findAll({include:Genre})
     let allVideogames=videogamesDb.concat(videogamesApi);
- 
+    console.log(videogamesApi);
     allVideogames=allVideogames.map(v=>{
         return {
             id:v.id,
